@@ -1,4 +1,3 @@
-# java-webdriver-cucumber
-
-Base framework for Java Webdriver automation with Cucumber
+# java-selenium-cucumber-automation
+Selenium Cucumber Automation Tests
 
