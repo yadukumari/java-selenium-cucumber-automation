@@ -18,15 +18,34 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TestContext {
 
     private static WebDriver driver;
+
+    private static String timestamp = new SimpleDateFormat("+yyyy-MM-dd-hh-mm-sss").format(new Date());
+
+    private static Map<String, Object> positionId = new HashMap<>();
+
+    public static void savePositionId(int id){
+        positionId.put("LastPositionId", id);
+    }
+
+    public static Integer getLastPositionId(){
+        return (Integer) positionId.get("LastPositionId");
+    }
 
     public static WebDriver getDriver() {
         return driver;
@@ -62,6 +81,7 @@ public class TestContext {
 //                    chromePreferences.put("profile.default_content_setting_values.cookies", 2);
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--start-maximized");
+                    chromeOptions.addArguments("--remote-allow-origins=*");
                     chromeOptions.setExperimentalOption("prefs", chromePreferences);
                     System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
                     if (isHeadless) {
@@ -111,5 +131,32 @@ public class TestContext {
         } else {
             throw new RuntimeException("Unsupported test environment: " + testEnv);
         }
+    }
+
+    public static Map<String, String> getDataFromFile(String objectName){
+        String path = System.getProperty("user.dir") + "/src/test/resources/data/"+objectName+".yml";
+        try{
+            InputStream stream = new FileInputStream(path);
+            Yaml yaml = new Yaml();
+            return yaml.load(stream);
+        }catch (FileNotFoundException e){
+            throw new Error(e);
+        }
+    }
+
+    public static Map<String, String> getDataFromCommonMoreDataFile(String objectName){
+        String path = System.getProperty("user.dir") + "/src/test/resources/data/quote.yml";
+        try{
+            InputStream stream = new FileInputStream(path);
+            Map<String, Map<String,String>> mapOfMaps = new Yaml().load(stream);
+            return mapOfMaps.get(objectName);
+        }catch (FileNotFoundException e){
+            throw new Error(e);
+        }
+    }
+    public static Map<String, String> getPositionFromFile(String objectName){
+        Map<String, String> position = getDataFromFile(objectName);
+
+        return position;
     }
 }

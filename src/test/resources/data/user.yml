@@ -1,0 +1,18 @@
+username: Yadukumari
+email: yadu123@gmail.com
+password: yadu09876
+PhoneNumber: "6787748934"
+countryOfOrigin: India
+firstName: Yadukumari
+lastName: Shanthigrama Ramesh
+gender: female
+
+
+
+#form.fillUsername("YaduKumari");
+#form.fillEmail("yadu123@gmail.com");
+#form.fillPasswordField("yadu09876");
+#form.fillPhoneNumber("6787748934");
+#form.fillCountryOfOrigin("India");
+#form.fillNameField("Yadukumari", "Shanthigrama Ramesh");
+#form.fillGenderTag("female");
