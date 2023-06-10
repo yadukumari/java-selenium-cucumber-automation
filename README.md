@@ -1,2 +1,2 @@
 # java-selenium-cucumber-automation
-Java Selenium Cucumber Automation
+Selenium Cucumber Automation Tests

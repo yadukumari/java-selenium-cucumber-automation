@@ -1,0 +1,19 @@
+user:
+  username: Yadukumari
+  email: yadu123@gmail.com
+  password: yadu09876
+  PhoneNumber: "6787748934"
+  countryOfOrigin: India
+  firstName: Yadukumari
+  lastName: Shanthigrama Ramesh
+  gender: female
+
+admin:
+  username: Ravikiran
+  email: ravi123@gmail.com
+  password: ravi09876
+  PhoneNumber: "9192348972"
+  countryOfOrigin: India
+  firstName: Ravikiran
+  lastName: Jhanardhana
+  gender: male
